@@ -32,6 +32,9 @@ namespace HeartStoneAPI.Models
         {
             return new ApplicationDbContext();
         }
-        public System.Data.Entity.DbSet<HeartStoneAPI.Models.Carte> Artists { get; set; }
+        public System.Data.Entity.DbSet<HeartStoneAPI.Models.Carte> Cartes { get; set; }
+        public System.Data.Entity.DbSet<HeartStoneAPI.Models.Partie> Parties { get; set; }
+        public System.Data.Entity.DbSet<HeartStoneAPI.Models.Deck> Decks { get; set; }
+        public System.Data.Entity.DbSet<HeartStoneAPI.Models.Tour> Tours { get; set; }
     }
 }
