@@ -234,6 +234,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -244,6 +245,7 @@
     <Compile Include="Models\Carte.cs" />
     <Compile Include="Models\Deck.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\CarteJoueur.cs" />
     <Compile Include="Models\Partie.cs" />
     <Compile Include="Models\Tour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

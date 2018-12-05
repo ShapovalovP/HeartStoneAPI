@@ -10,7 +10,7 @@ namespace HeartStoneAPI.Models
     // Vous pouvez ajouter des données de profil pour l'utilisateur en ajoutant d'autres propriétés à votre classe ApplicationUser. Pour en savoir plus, consultez https://go.microsoft.com/fwlink/?LinkID=317594.
     public class ApplicationUser : IdentityUser
     {
-        public virtual List<Carte> Cartes { get; set; }
+      //  public virtual List<CarteJoueur> CartesJoueur { get; set; }
         public virtual List<Partie> Parties { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
@@ -36,5 +36,6 @@ namespace HeartStoneAPI.Models
         public System.Data.Entity.DbSet<HeartStoneAPI.Models.Partie> Parties { get; set; }
         public System.Data.Entity.DbSet<HeartStoneAPI.Models.Deck> Decks { get; set; }
         public System.Data.Entity.DbSet<HeartStoneAPI.Models.Tour> Tours { get; set; }
+        public System.Data.Entity.DbSet<HeartStoneAPI.Models.CarteJoueur> CarteJoueurs { get; set; }
     }
 }
