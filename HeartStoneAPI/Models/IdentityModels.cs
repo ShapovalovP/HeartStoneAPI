@@ -11,6 +11,7 @@ namespace HeartStoneAPI.Models
     public class ApplicationUser : IdentityUser
     {
       //  public virtual List<CarteJoueur> CartesJoueur { get; set; }
+      public int Point { get; set; }
         public virtual List<Partie> Parties { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {

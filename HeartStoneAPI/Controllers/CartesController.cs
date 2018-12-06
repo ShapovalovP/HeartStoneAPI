@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using HeartStoneAPI.Models;
+using Microsoft.AspNet.Identity;
 
 namespace HeartStoneAPI.Controllers
 {
@@ -96,12 +97,26 @@ namespace HeartStoneAPI.Controllers
             //  List<CarteDTO> list = userr.Cartes.Select(a => new CarteDTO(a.Id, a.ValeurAttaque, a.ValeurDefense, a.prixAchat, a.prixVendre)).ToList();
             return Ok(kart);
         }
+        [HttpGet]
+        [Route("api/Cartes/AddUsersPoint/{id}")]
+        [ResponseType(typeof(string))]
+        public IHttpActionResult AddUsersPoint(int id)
+        {
+
+            ApplicationUser userr = CurrentUser;
+            int curPoin = userr.Point;
+            userr.Point = curPoin + id;
+          
+            db.SaveChanges();
+            
+            return Ok(userr.Point.ToString());
+        }
         public ApplicationUser CurrentUser
         {
             get
             {
 
-                var u = "20df3bf4-030c-47d8-b4b6-11146a6de086";// User.Identity.GetUserId(); /////POMENIAT!!!!!!!!!
+                var u =  User.Identity.GetUserId(); /////POMENIAT!!!!!!!!!"20df3bf4-030c-47d8-b4b6-11146a6de086";
                 ApplicationUser rez = db.Users.Where(x => x.Id == u).First();   ////.Include("Cartes")
 
                 return rez;

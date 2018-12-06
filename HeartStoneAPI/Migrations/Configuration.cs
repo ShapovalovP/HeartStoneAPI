@@ -38,8 +38,14 @@ namespace HeartStoneAPI.Migrations
                 new Carte {ValeurAttaque = 8, ValeurDefense =9, prixAchat = 1.6M , prixVendre= 1.7M, imageDerier = "/assets/der.jpg", image= "/assets/water.jpg" },
                 new Carte {ValeurAttaque = 9, ValeurDefense =10, prixAchat =1.7M , prixVendre= 1.8M, imageDerier = "/assets/der.jpg", image= "/assets/terre.jpg" },
             };
+           /*  List< ApplicationUser > users = new List<ApplicationUser>()
+             {
+                 new ApplicationUser { UserName = "a@a.com", Email = "a@a.com", PasswordHash = "Passw0rd! "  }
+
+             };*/
 
             context.Cartes.AddRange(cartes);
+           // context.Users.  AddRange(users);
 
             context.SaveChanges();
         }
