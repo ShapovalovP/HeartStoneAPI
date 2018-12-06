@@ -36,11 +36,26 @@ namespace HeartStoneAPI.Controllers
                 index = rnd.Next(0, (list.Count - 1));
                 Carte kart = list.ElementAt(index);
 
-                CarteDTO c = new CarteDTO(kart.Id, kart.ValeurAttaque, kart.ValeurDefense, kart.prixAchat, kart.prixVendre);
+                CarteDTO c = new CarteDTO(kart.Id, kart.ValeurAttaque, kart.ValeurDefense, kart.prixAchat, kart.prixVendre, kart.image, kart.imageDerier);
                 listCarts.Add(c);
             }
 
             return Ok(listCarts);
+        }
+        [HttpGet]
+        [Route("api/Cartes/AletoirCarte")]
+        [ResponseType(typeof(List<CarteDTO>))]
+        public IHttpActionResult GetDeckCartesAletoirCarte()
+        {
+            List<Carte> list = db.Cartes.ToList();
+          //  List<CarteDTO> listCarts = new List<CarteDTO>();
+            Random rnd = new Random();
+            int index = 0;
+            index = rnd.Next(0, (list.Count - 1));
+            Carte kart = list.ElementAt(index);
+            CarteDTO c = new CarteDTO(kart.Id, kart.ValeurAttaque, kart.ValeurDefense, kart.prixAchat, kart.prixVendre, kart.image, kart.imageDerier);
+
+            return Ok(c);
         }
         [HttpGet]
         [Route("api/Cartes/UsersCartes")]
@@ -60,7 +75,7 @@ namespace HeartStoneAPI.Controllers
             }
            foreach (Carte kart in CartSelonId)
             {
-                rez.Add(new CarteDTO(kart.Id, kart.ValeurAttaque, kart.ValeurDefense, kart.prixAchat, kart.prixVendre));
+                rez.Add(new CarteDTO(kart.Id, kart.ValeurAttaque, kart.ValeurDefense, kart.prixAchat, kart.prixVendre, kart.image, kart.imageDerier));
             }
 
 
