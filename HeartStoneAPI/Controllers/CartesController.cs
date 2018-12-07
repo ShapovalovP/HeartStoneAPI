@@ -18,9 +18,17 @@ namespace HeartStoneAPI.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Cartes
-        public IQueryable<Carte> GetCartes()
+        public List<CarteDTO> GetCartes()
         {
-            return db.Cartes;
+            string id = User.Identity.GetUserId();
+             List<Carte> listcarte=db.Cartes.ToList();
+            List<CarteDTO> listdto = new List<CarteDTO>(); 
+            foreach(Carte c in listcarte)
+            {
+                listdto.Add(new CarteDTO { id = c.Id, imageDerier = c.imageDerier, image = c.image, prixAchat = c.prixAchat, prixVendre = c.prixVendre, userId = id, valeurAttaque = c.ValeurAttaque, valeurDefense = c.ValeurDefense });
+            }
+
+            return listdto;
         }
         [HttpGet]
         [Route("api/Cartes/Aletoir")]

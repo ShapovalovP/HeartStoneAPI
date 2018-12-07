@@ -16,7 +16,7 @@ namespace HeartStoneAPI.Models
        public string image { get; set; }
         public string imageDerier { get; set; }
 
-        // public virtual List<ApplicationUser> Users { get; set; }
+         public virtual List<ApplicationUser> Users { get; set; }
     }
 
     public class CarteDTO
