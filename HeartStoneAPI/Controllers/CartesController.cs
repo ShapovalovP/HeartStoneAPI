@@ -209,6 +209,47 @@ namespace HeartStoneAPI.Controllers
 
             return Ok(carte);
         }
+        [HttpGet]
+        [Route("api/Cartes/GetCartesUser")]
+        public List<CarteDTO> GetCartesUser()
+        {
+            string id = User.Identity.GetUserId();
+            List<Carte> listcarte = db.Users.Include("Cartes").Where(x => x.Id == id).First().Cartes.ToList();
+            List<CarteDTO> listdto = new List<CarteDTO>();
+            foreach (Carte c in listcarte)
+            {
+                listdto.Add(new CarteDTO { id = c.Id, imageDerier = c.imageDerier, image = c.image, prixAchat = c.prixAchat, prixVendre = c.prixVendre, userId = id, valeurAttaque = c.ValeurAttaque, valeurDefense = c.ValeurDefense });
+            }
+
+            return listdto;
+        }
+
+        [HttpPost]
+        [Route("api/Cartes/PostCartesUser")]
+        public IHttpActionResult PostCartesUser(Carte carte)
+        {
+            string userid2 = User.Identity.GetUserId();
+            ApplicationUser utilisateur = db.Users.Where(u => u.Id == userid2).First();
+            db.Cartes.Where(x => x.Id == carte.Id).FirstOrDefault().Users.Add(utilisateur);
+            db.SaveChanges();
+
+
+
+            return Ok();
+        }
+        [HttpPost]
+        [Route("api/Cartes/RemoveCartesUser")]
+        public IHttpActionResult RemoveCartesUser(Carte carte)
+        {
+            string userid2 = User.Identity.GetUserId();
+            ApplicationUser utilisateur = db.Users.Where(u => u.Id == userid2).First();
+            db.Cartes.Where(x => x.Id == carte.Id).FirstOrDefault().Users.Remove(utilisateur);
+            db.SaveChanges();
+
+
+
+            return Ok();
+        }
 
         protected override void Dispose(bool disposing)
         {
