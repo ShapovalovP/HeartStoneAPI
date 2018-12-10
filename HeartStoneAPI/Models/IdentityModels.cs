@@ -12,8 +12,9 @@ namespace HeartStoneAPI.Models
     public class ApplicationUser : IdentityUser
     {
         public virtual List<Carte> Cartes { get; set; }
-      public int Point { get; set; }
+          public int Point { get; set; }
         public virtual List<Partie> Parties { get; set; }
+        public virtual List<Deck> deck { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Notez que authenticationType doit correspondre à l'instance définie dans CookieAuthenticationOptions.AuthenticationType

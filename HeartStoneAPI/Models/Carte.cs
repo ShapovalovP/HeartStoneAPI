@@ -7,14 +7,15 @@ namespace HeartStoneAPI.Models
 {
     public class Carte
     {
-       public int Id { get; set; }
-       public int ValeurAttaque { get; set; }
-       public int ValeurDefense { get; set; }
-       public decimal prixAchat { get; set; }
-       public decimal prixVendre { get; set; }
+        public int Id { get; set; }
+        public int ValeurAttaque { get; set; }
+        public int ValeurDefense { get; set; }
+        public decimal prixAchat { get; set; }
+        public decimal prixVendre { get; set; }
 
-       public string image { get; set; }
+        public string image { get; set; }
         public string imageDerier { get; set; }
+        public virtual List<Deck> deck {get;set;}
 
          public virtual List<ApplicationUser> Users { get; set; }
 
@@ -34,9 +35,7 @@ namespace HeartStoneAPI.Models
             prixAchat = prixAch;
             prixVendre = prixVendr;
             image = img;
-            imageDerier = imgDer;
-           
-
+            imageDerier = imgDer;          
         }
         public int id { get; set; }
         public int valeurAttaque { get; set; }
