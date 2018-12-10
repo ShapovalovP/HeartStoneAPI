@@ -214,6 +214,7 @@ namespace HeartStoneAPI.Controllers
         public List<CarteDTO> GetCartesUser()
         {
             string id = User.Identity.GetUserId();
+
             List<Carte> listcarte = db.Users.Include("Cartes").Where(x => x.Id == id).First().Cartes.ToList();
             List<CarteDTO> listdto = new List<CarteDTO>();
             foreach (Carte c in listcarte)
