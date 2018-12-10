@@ -105,6 +105,46 @@ namespace HeartStoneAPI.Controllers
             //  List<CarteDTO> list = userr.Cartes.Select(a => new CarteDTO(a.Id, a.ValeurAttaque, a.ValeurDefense, a.prixAchat, a.prixVendre)).ToList();
             return Ok(kart);
         }
+
+        [HttpGet]
+        [Route("api/Decks")]
+        [ResponseType(typeof(List<DeckDto>))]
+        public IHttpActionResult getDeckByUser(Deck deck) {
+            string id = User.Identity.GetUserId();
+            //List<Carte> listcarte = db.Users.Include("Cartes").Where(x => x.Id == id).First().Cartes.ToList();
+            //if (db.Users.Include("deck").Where(x => x.Id == id).First().deck.ToList().Count == 0)
+            //{
+            //    return Ok();
+            //}
+            List<Deck> listeDecks = db.Decks.Where(x => x.Users.Id == id).ToList(); //db.Users.Include("Deck").Where(x => x.Id == id).First().deck.ToList();
+
+            List<DeckDto> deckTransfert= new List<DeckDto>();
+            foreach (Deck item in listeDecks)            
+                deckTransfert.Add(new DeckDto(item.Id, item.nomDeck));
+            
+                //List<Carte> listcarte = db.Users.Include("Cartes").Where(x => x.Id == id).First().Cartes.ToList();
+            return Ok(deckTransfert);
+        }
+
+        [HttpPost]
+        [Route("api/CreateDeck")]
+        public IHttpActionResult createDeck(List<CarteDTO> cartesInDeck)
+        {
+            string id = User.Identity.GetUserId();
+            List<Carte> listCarte = new List<Carte>();
+            foreach (var item in cartesInDeck)
+            {
+                listCarte.Add( db.Cartes.Where(x => x.Id == item.id).FirstOrDefault());
+            }
+            Deck deck2add = new Deck { nomDeck = "deck" + db.Decks.ToList().Count() , Users = db.Users.Where(x => x.Id == id).First(), Cartes= listCarte};
+            db.Decks.Add(deck2add);
+            db.SaveChanges();
+
+            //List<Carte> listcarte = db.Users.Include("Cartes").Where(x => x.Id == id).First().Cartes.ToList();
+            return Ok();
+        }
+
+
         [HttpGet]
         [Route("api/Cartes/AddUsersPoint/{id}")]
         [ResponseType(typeof(string))]

@@ -11,7 +11,7 @@ namespace HeartStoneAPI.Models
       
 
         public virtual List<ApplicationUser> Users { get; set; }
-        public virtual List<Deck> Decks { get; set; }
+        //public virtual List<Deck> Decks { get; set; }
         public virtual List<Tour> Tours { get; set; }
     }
 }
