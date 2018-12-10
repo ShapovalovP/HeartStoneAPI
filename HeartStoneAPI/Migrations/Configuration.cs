@@ -31,9 +31,9 @@ namespace HeartStoneAPI.Migrations
             List<Carte> cartes = new List<Carte>()
             {
 
-                new Carte { ValeurAttaque = 1, ValeurDefense=2, prixAchat = 1M, prixVendre= 1.1M, imageDerier = "/assets/der.jpg", image= "/assets/alphys.png" },
-                new Carte { ValeurAttaque = 2, ValeurDefense=3, prixAchat = 1M, prixVendre= 1.1M, imageDerier = "/assets/der.jpg", image= "/assets/asgore.png" },
-                new Carte { ValeurAttaque = 3, ValeurDefense=4, prixAchat = 1M, prixVendre= 1.1M, imageDerier = "/assets/der.jpg", image= "/assets/asriel.png" },
+                new Carte { ValeurAttaque = 1, ValeurDefense=2, prixAchat = 1000, prixVendre= 1000, imageDerier = "/assets/der.jpg", image= "/assets/alphys.png" },
+                new Carte { ValeurAttaque = 2, ValeurDefense=3, prixAchat = 1000, prixVendre= 1000, imageDerier = "/assets/der.jpg", image= "/assets/asgore.png" },
+                new Carte { ValeurAttaque = 3, ValeurDefense=4, prixAchat = 1000, prixVendre= 1000, imageDerier = "/assets/der.jpg", image= "/assets/asriel.png" },
                 new Carte { ValeurAttaque = 4, ValeurDefense=5, prixAchat = 1M, prixVendre= 1.1M, imageDerier = "/assets/der.jpg", image= "/assets/burgerpants.png" },
                 new Carte { ValeurAttaque = 5, ValeurDefense=6, prixAchat = 1M, prixVendre= 1.1M, imageDerier = "/assets/der.jpg", image= "/assets/chara.png" },
                 new Carte { ValeurAttaque = 6, ValeurDefense=7, prixAchat = 1M, prixVendre= 1.1M, imageDerier = "/assets/der.jpg", image= "/assets/dog.png" },
