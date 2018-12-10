@@ -28,9 +28,9 @@ namespace HeartStoneAPI.Migrations
 
             List<Element> elements = new List<Element>()
             {
-                new Element { Id = 1, nomElement = "Determination", force = "Monster", faiblesse = "" },
-                new Element { Id = 2, nomElement = "Monster", force = "Monster", faiblesse = "Determination" },
-                new Element { Id = 3, nomElement = "Human", force = "Monster", faiblesse = "Determination" }
+                new Element { Id = 1, nomElement = "Determination", force = "Monster", faiblesse = "" ,Cartes=new List<Carte>()},
+                new Element { Id = 2, nomElement = "Monster", force = "Monster", faiblesse = "Determination",Cartes=new List<Carte>() },
+                new Element { Id = 3, nomElement = "Human", force = "Monster", faiblesse = "Determination" ,Cartes=new List<Carte>()}
             };
 
             context.Elements.AddRange(elements);
