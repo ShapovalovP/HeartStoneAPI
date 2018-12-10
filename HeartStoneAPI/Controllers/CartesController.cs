@@ -254,6 +254,7 @@ namespace HeartStoneAPI.Controllers
         public List<CarteDTO> GetCartesUser()
         {
             string id = User.Identity.GetUserId();
+
             List<Carte> listcarte = db.Users.Include("Cartes").Where(x => x.Id == id).First().Cartes.ToList();
             List<CarteDTO> listdto = new List<CarteDTO>();
             foreach (Carte c in listcarte)
@@ -263,6 +264,15 @@ namespace HeartStoneAPI.Controllers
 
             return listdto;
         }
+        [HttpGet]
+        [Route("api/Cartes/GetPointsUser")]
+        public int GetPointsUser()
+        {
+            string id = User.Identity.GetUserId();
+            ApplicationUser utilisateur = db.Users.Where(u => u.Id == id).First();
+            return utilisateur.Point;
+
+        }
 
         [HttpPost]
         [Route("api/Cartes/PostCartesUser")]
@@ -271,6 +281,7 @@ namespace HeartStoneAPI.Controllers
             string userid2 = User.Identity.GetUserId();
             ApplicationUser utilisateur = db.Users.Where(u => u.Id == userid2).First();
             db.Cartes.Where(x => x.Id == carte.Id).FirstOrDefault().Users.Add(utilisateur);
+            db.Users.Where(x => x.Id == userid2).FirstOrDefault().Point = (db.Users.Where(x => x.Id == userid2).FirstOrDefault().Point - Convert.ToInt32(carte.prixAchat));
             db.SaveChanges();
 
 
@@ -284,6 +295,7 @@ namespace HeartStoneAPI.Controllers
             string userid2 = User.Identity.GetUserId();
             ApplicationUser utilisateur = db.Users.Where(u => u.Id == userid2).First();
             db.Cartes.Where(x => x.Id == carte.Id).FirstOrDefault().Users.Remove(utilisateur);
+            db.Users.Where(x => x.Id == userid2).FirstOrDefault().Point = (db.Users.Where(x => x.Id == userid2).FirstOrDefault().Point + Convert.ToInt32(carte.prixVendre));
             db.SaveChanges();
 
 
