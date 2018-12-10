@@ -223,6 +223,15 @@ namespace HeartStoneAPI.Controllers
 
             return listdto;
         }
+        [HttpGet]
+        [Route("api/Cartes/GetPointsUser")]
+        public int GetPointsUser()
+        {
+            string id = User.Identity.GetUserId();
+            ApplicationUser utilisateur = db.Users.Where(u => u.Id == id).First();
+            return utilisateur.Point;
+
+        }
 
         [HttpPost]
         [Route("api/Cartes/PostCartesUser")]
