@@ -48,6 +48,12 @@ namespace HeartStoneAPI.Migrations
                 new Carte { ValeurAttaque = 1000, ValeurDefense= 1000, prixAchat = 1000000, prixVendre= 2000, imageDerier = "/assets/der.jpg", image= "/assets/temmie.png" },
                 new Carte { ValeurAttaque = 30, ValeurDefense= 300, prixAchat = 1000, prixVendre= 500, imageDerier = "/assets/der.jpg", image= "/assets/Toriel.png" },
                 new Carte { ValeurAttaque = 50, ValeurDefense= 1000, prixAchat = 10000, prixVendre= 5000, imageDerier = "/assets/der.jpg", image= "/assets/undyne.png" },
+                new Carte { ValeurAttaque = 10, ValeurDefense = 10, prixAchat = 1000, prixVendre = 1000, imageDerier = "/assets/der.jpg", image = "/assets/water.jpg" },
+                new Carte { ValeurAttaque = 10, ValeurDefense = 10, prixAchat = 1000, prixVendre = 1000, imageDerier = "/assets/der.jpg", image = "/assets/water.jpg" },
+                new Carte { ValeurAttaque = 10, ValeurDefense = 10, prixAchat = 1000, prixVendre = 1000, imageDerier = "/assets/der.jpg", image = "/assets/feu.jpg" },
+                new Carte { ValeurAttaque = 10, ValeurDefense = 10, prixAchat = 1000, prixVendre = 1000, imageDerier = "/assets/der.jpg", image = "/assets/feu.jpg" },
+                new Carte { ValeurAttaque = 10, ValeurDefense = 10, prixAchat = 1000, prixVendre = 1000, imageDerier = "/assets/der.jpg", image = "/assets/terre.jpg" },
+                new Carte { ValeurAttaque = 10, ValeurDefense = 10, prixAchat = 1000, prixVendre = 1000, imageDerier = "/assets/der.jpg", image = "/assets/terre.jpg" }
             };
 
             context.Cartes.AddRange(cartes);
