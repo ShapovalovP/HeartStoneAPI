@@ -19,6 +19,8 @@ namespace HeartStoneAPI.Models
          public virtual List<ApplicationUser> Users { get; set; }
 
         public virtual Element Element { get; set; }
+
+        public virtual Categorie Categorie { get; set; }
     }
 
     public class CarteDTO
@@ -47,6 +49,8 @@ namespace HeartStoneAPI.Models
         public string userId { get; set; }
 
         public string elementId { get; set; }
+
+        public string categorieId { get; set; }
        // public string image { get; set; }
 
        // public virtual List<ApplicationUser> Users { get; set; }

@@ -26,14 +26,7 @@ namespace HeartStoneAPI.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
 
-            List<Element> elements = new List<Element>()
-            {
-                new Element { Id = 1, nomElement = "Determination", force = "Monster", faiblesse = "" },
-                new Element { Id = 2, nomElement = "Monster", force = "Monster", faiblesse = "Determination" },
-                new Element { Id = 3, nomElement = "Human", force = "Monster", faiblesse = "Determination" }
-            };
-
-            context.Elements.AddRange(elements);
+           
 
             List<Carte> cartes = new List<Carte>()
             {
@@ -59,6 +52,15 @@ namespace HeartStoneAPI.Migrations
 
             context.Cartes.AddRange(cartes);
 
+            List<Element> elements = new List<Element>()
+            {
+                new Element { Id = 1, nomElement = "Determination", force = "Monster", faiblesse = "", Cartes = new List<Carte>() },
+                new Element { Id = 2, nomElement = "Monster", force = "Monster", faiblesse = "Determination", Cartes = new List<Carte>() },
+                new Element { Id = 3, nomElement = "Human", force = "Monster", faiblesse = "Determination", Cartes = new List<Carte>() }
+            };
+
+            context.Elements.AddRange(elements);
+
             elements[1].Cartes.Add(cartes[0]);
             elements[1].Cartes.Add(cartes[1]);
             elements[0].Cartes.Add(cartes[2]);
@@ -77,6 +79,36 @@ namespace HeartStoneAPI.Migrations
             elements[1].Cartes.Add(cartes[15]);
             elements[1].Cartes.Add(cartes[16]);
             elements[0].Cartes.Add(cartes[17]);
+
+
+            List<Categorie> categories = new List<Categorie>()
+            {
+                new Categorie { Id = 1, nomCategorie = "Human", rareté = 1, Cartes = new List<Carte>() },
+                new Categorie { Id = 2, nomCategorie = "Monster", rareté = 2, Cartes = new List<Carte>() },
+                new Categorie { Id = 3, nomCategorie = "Golden Flower", rareté = 3, Cartes = new List<Carte>() },
+                new Categorie { Id = 4, nomCategorie = "Hero", rareté = 4, Cartes = new List<Carte>() },
+                new Categorie { Id = 5, nomCategorie = "True Hero", rareté = 5, Cartes = new List<Carte>() }
+            };
+
+            categories[0].Cartes.Add(cartes[0]);//
+            categories[1].Cartes.Add(cartes[1]);//
+            categories[4].Cartes.Add(cartes[2]);//
+            categories[0].Cartes.Add(cartes[3]);//
+            categories[2].Cartes.Add(cartes[4]);//
+            categories[4].Cartes.Add(cartes[5]);//
+            categories[1].Cartes.Add(cartes[6]);//
+            categories[2].Cartes.Add(cartes[7]);//
+            categories[4].Cartes.Add(cartes[8]);//
+            categories[4].Cartes.Add(cartes[9]);//
+            categories[1].Cartes.Add(cartes[10]);//
+            categories[1].Cartes.Add(cartes[11]);//
+            categories[0].Cartes.Add(cartes[12]);//
+            categories[3].Cartes.Add(cartes[13]);//
+            categories[4].Cartes.Add(cartes[14]);//
+            categories[3].Cartes.Add(cartes[15]);//
+            categories[3].Cartes.Add(cartes[16]);//
+            categories[4].Cartes.Add(cartes[17]);//
+
 
             context.SaveChanges();
         }
