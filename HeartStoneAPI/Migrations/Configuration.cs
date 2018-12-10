@@ -26,6 +26,15 @@ namespace HeartStoneAPI.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
 
+            List<Element> elements = new List<Element>()
+            {
+                new Element { Id = 1, nomElement = "Determination", force = "Monster", faiblesse = "" },
+                new Element { Id = 2, nomElement = "Monster", force = "Monster", faiblesse = "Determination" },
+                new Element { Id = 3, nomElement = "Human", force = "Monster", faiblesse = "Determination" }
+            };
+
+            context.Elements.AddRange(elements);
+
             List<Carte> cartes = new List<Carte>()
             {
                 new Carte { ValeurAttaque = 30, ValeurDefense= 200, prixAchat = 1000, prixVendre= 500, imageDerier = "/assets/der.jpg", image= "/assets/alphys.png" },
@@ -49,6 +58,25 @@ namespace HeartStoneAPI.Migrations
             };
 
             context.Cartes.AddRange(cartes);
+
+            elements[1].Cartes.Add(cartes[0]);
+            elements[1].Cartes.Add(cartes[1]);
+            elements[0].Cartes.Add(cartes[2]);
+            elements[1].Cartes.Add(cartes[3]);
+            elements[2].Cartes.Add(cartes[4]);
+            elements[0].Cartes.Add(cartes[5]);
+            elements[1].Cartes.Add(cartes[6]);
+            elements[1].Cartes.Add(cartes[7]);
+            elements[0].Cartes.Add(cartes[8]);
+            elements[0].Cartes.Add(cartes[9]);
+            elements[1].Cartes.Add(cartes[10]);
+            elements[1].Cartes.Add(cartes[11]);
+            elements[1].Cartes.Add(cartes[12]);
+            elements[1].Cartes.Add(cartes[13]);
+            elements[0].Cartes.Add(cartes[14]);
+            elements[1].Cartes.Add(cartes[15]);
+            elements[1].Cartes.Add(cartes[16]);
+            elements[0].Cartes.Add(cartes[17]);
 
             context.SaveChanges();
         }
