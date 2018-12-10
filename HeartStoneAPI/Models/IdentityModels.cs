@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -33,10 +34,13 @@ namespace HeartStoneAPI.Models
         {
             return new ApplicationDbContext();
         }
-        public System.Data.Entity.DbSet<HeartStoneAPI.Models.Carte> Cartes { get; set; }
-        public System.Data.Entity.DbSet<HeartStoneAPI.Models.Partie> Parties { get; set; }
-        public System.Data.Entity.DbSet<HeartStoneAPI.Models.Deck> Decks { get; set; }
-        public System.Data.Entity.DbSet<HeartStoneAPI.Models.Tour> Tours { get; set; }
-        public System.Data.Entity.DbSet<HeartStoneAPI.Models.CarteJoueur> CarteJoueurs { get; set; }
+        public DbSet<Carte> Cartes { get; set; }
+        public DbSet<Partie> Parties { get; set; }
+        public DbSet<Deck> Decks { get; set; }
+        public DbSet<Tour> Tours { get; set; }
+
+        public DbSet<Element> Elements { get; set; }
+
+        public DbSet<CarteJoueur> CarteJoueurs { get; set; }
     }
 }
