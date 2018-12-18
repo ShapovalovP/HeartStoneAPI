@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using HeartStoneAPI.Models;
 using HeartStoneAPI.Providers;
 using HeartStoneAPI.Results;
+using System.Linq;
 
 namespace HeartStoneAPI.Controllers
 {
@@ -25,7 +26,7 @@ namespace HeartStoneAPI.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
-
+        private ApplicationDbContext db = new ApplicationDbContext();
         public AccountController()
         {
         }
@@ -335,6 +336,34 @@ namespace HeartStoneAPI.Controllers
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
+            }
+            else
+            {
+                Deck d = new Deck { nomDeck = "deck1" };
+
+              
+                List<Carte> listcarte = new List<Carte>();
+                List<Carte> list5carte = new List<Carte>();
+                listcarte.AddRange(db.Cartes);
+               // d = db.Users.Where(x => x.Id == user.Id).FirstOrDefault().deck.First();
+
+                for (int i = 8; i < 13; i++)
+                {
+                    db.Users.Where(x => x.Id == user.Id).FirstOrDefault().Cartes.Add(listcarte[i]);
+                    list5carte.Add(listcarte[i]);
+
+                }
+
+
+                
+                db.SaveChanges();
+
+               
+                Deck deck2add = new Deck { nomDeck = "deck" + db.Decks.ToList().Count(), Users = db.Users.Where(x => x.Id == user.Id).First(), Cartes = list5carte };
+                db.Decks.Add(deck2add);
+                db.SaveChanges();
+
+
             }
 
             return Ok();

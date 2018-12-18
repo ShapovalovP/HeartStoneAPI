@@ -292,6 +292,7 @@ namespace HeartStoneAPI.Controllers
         [Route("api/Cartes/RemoveCartesUser")]
         public IHttpActionResult RemoveCartesUser(Carte carte)
         {
+            
             string userid2 = User.Identity.GetUserId();
             ApplicationUser utilisateur = db.Users.Where(u => u.Id == userid2).First();
             db.Cartes.Where(x => x.Id == carte.Id).FirstOrDefault().Users.Remove(utilisateur);
@@ -301,6 +302,46 @@ namespace HeartStoneAPI.Controllers
 
 
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("api/Cartes/GetDeckByUser")]
+        public List<DeckDto> GetDeckByUser()
+        {
+            string id = User.Identity.GetUserId();
+            ApplicationUser utilisateur = db.Users.Where(u => u.Id == id).First();
+            List<Deck> listdeck = db.Users.Where(x => x.Id == utilisateur.Id).FirstOrDefault().deck;
+
+            List<DeckDto> listdeckdto = new List<DeckDto>();
+
+            foreach(Deck d in listdeck)
+            {
+                listdeckdto.Add(new DeckDto { id = d.Id, name = d.nomDeck });
+            }
+            return listdeckdto;
+
+        }
+        [HttpGet]
+        [Route("api/Cartes/GetAllCarteWithDeckId")]
+        public List<CarteDTO2> GetAllCarteWithDeckId()
+        {
+            string id = User.Identity.GetUserId();
+            ApplicationUser utilisateur = db.Users.Where(u => u.Id == id).First();
+
+
+            List<Carte> listcarte = db.Users.Include("Cartes").Where(x => x.Id == id).First().Cartes;
+            List<CarteDTO2> listdto = new List<CarteDTO2>();
+            foreach (Deck d in db.Users.Where(x => x.Id == id).FirstOrDefault().deck)
+            {
+                foreach (Carte c in d.Cartes)
+                {
+                    listdto.Add(new CarteDTO2 { id = c.Id, deckId = d.Id, imageDerier = c.imageDerier, image = c.image, prixAchat = c.prixAchat, prixVendre = c.prixVendre, userId = id, valeurAttaque = c.ValeurAttaque, valeurDefense = c.ValeurDefense });
+                }
+            }
+          
+
+            return listdto;
+
         }
 
         protected override void Dispose(bool disposing)
