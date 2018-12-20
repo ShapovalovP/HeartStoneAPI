@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using HeartStoneAPI.Fleck;
 using HeartStoneAPI.Models;
 using Microsoft.AspNet.Identity;
 
@@ -104,6 +105,24 @@ namespace HeartStoneAPI.Controllers
             //  userr.Cartes.Add(new Carte {Id= kart.id, ValeurAttaque= kart.valeurAttaque, ValeurDefense = kart.valeurDefense, prixAchat = kart.prixAchat, prixVendre = kart.prixVendre });
             //  List<CarteDTO> list = userr.Cartes.Select(a => new CarteDTO(a.Id, a.ValeurAttaque, a.ValeurDefense, a.prixAchat, a.prixVendre)).ToList();
             return Ok(kart);
+        }
+        [HttpPost]
+        [Route("api/Cartes/AddCarteTour")]
+        [ResponseType(typeof(List<CarteDTO>))]
+        public void AddCarteTour(CarteDTO kart)   //////////////////////////////////////rabotau s etim
+        {
+            if (kart == null) return;
+            if (User.Identity.IsAuthenticated)
+            {
+                ApplicationUser userr = CurrentUser;
+                Carte cartDB = db.Cartes.FirstOrDefault(x => x.Id == kart.id);
+                CartDeTour cdt = new CartDeTour { cartId = kart.id, utilisateurUserName = userr.UserName };
+                Fleck.FleckServer.SendCartTour(cdt);
+               /* db.CarteJoueurs.Add(new CarteJoueur() { CarteId = kart.id, UserId = userr.Id });
+                db.SaveChanges();*/
+                //  userr.Cartes.Add(new Carte {Id= kart.id, ValeurAttaque= kart.valeurAttaque, ValeurDefense = kart.valeurDefense, prixAchat = kart.prixAchat, prixVendre = kart.prixVendre });
+                //  List<CarteDTO> list = userr.Cartes.Select(a => new CarteDTO(a.Id, a.ValeurAttaque, a.ValeurDefense, a.prixAchat, a.prixVendre)).ToList();
+            }
         }
 
         [HttpGet]

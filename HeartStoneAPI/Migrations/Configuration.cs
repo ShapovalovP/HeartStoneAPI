@@ -21,12 +21,16 @@ namespace HeartStoneAPI.Migrations
         protected override void Seed(HeartStoneAPI.Models.ApplicationDbContext context)
         {
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context)); ////dobavil
-            //  This method will be called after migrating to the latest version.
+                                                                                                         //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
+            ApplicationUser user = new ApplicationUser();
+            user.Email = "a@a.com";
+            user.UserName = "Pavlo";
+            user.Point = 9999999;
+            IdentityResult result = UserManager.Create(user, "Passw0rd!");
 
-           
 
             List<Carte> cartes = new List<Carte>()
             {
